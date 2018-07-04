@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>NotiChart Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+    {% load staticfiles %}
   </head>
   <body>
     <div class="row">
@@ -24,22 +25,22 @@
     </div>
 
     <div class="row">
-      <div class="col s1">
+      <div class="col s6">
 
       </div>
-      <div style="border-right: 3px solid #F3E7F5;"  class="col s8">
+      <div style="border-right: 3px solid #F3E7F5;"  class="col s3">
         <table>
           <thead>
-            <tr>
+            <tr style="background-color:#F3E7F5">
               <th>Latest Chapters</th>
-              <th>Chapter Links</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
-            {% for feed in feeds.entries %}
+            {% for entry in entries %}
             <tr>
-              <td>{{feed.title}}</td>
-              <td><a href="{{feed.link}}">New Chapter!</a></td>
+              <td><a href="{{entry.link}}"></a>{{entry.title}}</td>
+              <td><a href="{{entry.link}}"> <img src={% static "book.png" %} alt="{{entry.title}}" style = "height:20px; width:20px"> </a></td>
             </tr>
             {%endfor%}
           </tbody>
@@ -56,8 +57,21 @@
         {{note.body}} due in {{note.days_left}}
         </li>
         {% endfor %}
+        <br>
+        <form method="POST">
+          {%csrf_token%}
+          <input style="width:250px" type="text"
+          name="{{form.body.name}}">
+          <br>
+          <input style="width:200px" type="date" name="{{form.due_date.name}}">
+          <br>
+          <button type="submit">Add note</button>
+        </form>
+
       </div>
+
       </ul>
+
     </div>
 
   </body>
