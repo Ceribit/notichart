@@ -15,18 +15,40 @@
           <h5>NotiChart</h5>
         </div>
       </div>
-      <div style="height:50px" class="col s4 purple lighten-3 right-align">
+      <div style="height:50px" class="col s4 purple lighten-3 center-align">
         <br>
-        <a style=" color:black" href="/admin/">
-          <img src="https://cdn0.iconfinder.com/data/icons/mini-icon-2-2/16/login_in-512.png" alt="Admin Login" style="height:25px; width=25px;">
-        </a>
 
       </div>
     </div>
 
     <div class="row">
-      <div class="col s6">
+      <div style="font-size:13px"class="col s1">
+        <li><a href="/admin/">Admin Login</a></li>
+        <li></li>
+        <li></li>
+        <li></li>
 
+      </div>
+      <div class="col s5">
+        <div class="col s12 purple lighten-5">
+         <h5 style="font-weight:bold">Calendar</h5>
+        </div>
+
+        {% for note in notes %}
+
+        <div class="card blue-grey lighten-3 col s5">
+
+                <div style="font-size:14px" class="card-content white-text">
+                  <span class="card-title">Card Title</span>
+                  <p >I am a very simple card. I am good at containing small bits of information.
+                  I am convenient because I require little markup to use effectively.</p>
+                </div>
+        </div>
+        {% if forloop.counter0|divisibleby:2 %}
+        <div class="col s2">
+        </div>
+        {% endif %}
+        {% endfor %}
       </div>
       <div style="border-right: 3px solid #F3E7F5;"  class="col s3">
         <table>
@@ -49,7 +71,7 @@
       <div class="col s0.5">
 
       </div>
-      <div class="col s2.5">
+      <div class="col s2">
       <ul class="collection-with-header left-align">
         <li class="collection-header"> <h6>Reminders</h6> </li>
         {% for note in notes %}
