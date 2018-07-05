@@ -1,26 +1,6 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>NotiChart Dashboard</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
-    {% load staticfiles %}
-  </head>
-  <body>
-    <div class="row">
-      <div style="height:50px" class="col s1 purple lighten-3">
-      </div>
-      <div style="height:50px" class="col s7 purple lighten-3">
-        <div>
-          <h5>NotiChart</h5>
-        </div>
-      </div>
-      <div style="height:50px" class="col s4 purple lighten-3 center-align">
-        <br>
-
-      </div>
-    </div>
-
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
     <div class="row">
       <div style="font-size:13px"class="col s1">
         <li><a href="/admin/">Admin Login</a></li>
@@ -69,32 +49,32 @@
         </table>
       </div>
       <div class="col s0.5">
-
       </div>
       <div class="col s2">
       <ul class="collection-with-header left-align">
         <li class="collection-header"> <h6>Reminders</h6> </li>
         {% for note in notes %}
         <li style="list-style-type: circle;"class="collection-item">
-        {{note.body}} due in {{note.days_left}}
+         <form method="POST" action="{% url 'remove_note' pk=note.pk %}">
+          {% csrf_token %}
+          <label style="color:black; font-size:14px;">{{note.body}} due in {{note.days_left}} </label>[
+          <input style="height:10px" type="image" src = {% static "smallcross.png"% }>
+          ]
+        </form>
+
         </li>
         {% endfor %}
         <br>
         <form method="POST">
           {%csrf_token%}
           <input style="width:250px" type="text"
-          name="{{form.body.name}}">
+          name="{{form.body.name}}" autocomplete="off">
           <br>
           <input style="width:200px" type="date" name="{{form.due_date.name}}">
           <br>
           <button type="submit">Add note</button>
         </form>
-
       </div>
-
       </ul>
-
     </div>
-
-  </body>
-</html>
+{% endblock %}

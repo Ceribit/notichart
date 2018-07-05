@@ -1,1 +1,10 @@
 NotiChart is a simple beginner-level project I am working on that will serve as a personal home page that will alert me of notifications of websites I view often and to show personal notes I have created
+
+TODO
+( ) Add functionality to the Calendar
+( ) Add page to store due notes and calendar events
+( ) Possibly rework the Calendar to look like a traditional calendar
+( ) Create separate page to add calendar events
+( ) Add option to delete calendar events
+(x) Add option to delete notes
+(x) Rework the home.html page to use a base html file
